@@ -43,16 +43,20 @@ export default function App() {
     let emoji = "";
     let meaning = "";
 
-    if (!emoji.target) {
-      emoji = event;
-    } else {
+    if (event.hasOwnProperty("target")) {
+      console.log("1");
       emoji = event.target.value;
+    } else {
+      console.log("2");
+      emoji = event;
     }
 
-    if (!gesturesDB[emoji]) {
-      meaning = "Emoji not found!!";
-    } else {
+    console.log(emoji, gesturesDB[emoji], gesturesDB["" + emoji]);
+    console.log(emoji in gesturesDB);
+    if (emoji in gesturesDB) {
       meaning = gesturesDB[emoji];
+    } else {
+      meaning = "Emoji not found!!";
     }
 
     if (emoji) {
